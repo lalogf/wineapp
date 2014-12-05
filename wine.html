@@ -1,0 +1,170 @@
+<html>
+<head>
+	<title></title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+</head>
+<body>
+<div class="container">
+<h1>The Ultimate Wine app</h1>
+<!-- <a data-toggle="modal" data-target="#add-wine" class="btn btn-success">Add new wine</a> -->
+<a href="#index" id="addwinebn" class="btn btn-success">Add new wine</a>
+
+<div class="row" id="newwine">
+			<div class="col-md-12">
+			<div class="thumbnail col-md-12">
+				<div class="col-md-4">
+					<img src="https://s3-us-west-2.amazonaws.com/sandboxapi/placeholder.jpg" >
+					<div class="form-group">
+						<label for="picture">Picture:</label>
+						<input type="text" class="form-control"  name="newpicture" placeholder="Add a picture url"></input>
+					</div>
+				</div>
+
+				<div class="caption col-md-4">
+
+					<div class="form-group">
+						<label for="wine">Name:</label>
+						<input type="text" class="form-control"  name="newname" placeholder="Wine Name"></input>
+					</div>
+					<div class="form-group">
+						<label for="grapes">Grapes:</label>
+						<input type="text" class="form-control"  name="newgrapes" placeholder="Type of grapes"></input>
+					</div>
+					<div class="form-group">
+						<label for="grapes">Year:</label>
+						<input type="text" class="form-control"  name="newyear" placeholder="Year"></input>
+					</div>
+					<div class="form-group">
+						<label for="country">Country:</label>
+						<input type="text" class="form-control"  name="newcountry" placeholder="Country"></input>
+					</div>
+					<div class="form-group">
+						<label for="description">Description:</label>
+						<input type="text" class="form-control description"  name="newdescription" placeholder="Description"></input>
+					</div>
+
+				</div>
+
+				<div class="col-md-4">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="price">Price:</label>
+							<input type="text" class="form-control pricebox"  name="newprice" placeholder="0"></input>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<button type="button" id="add-wine" class="btn btn-primary">Add Wine</button>
+				</div>
+			</div>
+		</div>
+</div>
+
+<div id="content" class="row">
+</div>
+
+
+</div>
+
+
+
+<script id="get-wine" type="x-handlebars-template">
+
+{{#each Wine}}
+  
+  <div class="col-sm-6 col-md-12">
+    <div  id="name{{id}}"  class="thumbnail col-md-12">
+
+      <div class="col-md-4">
+        <img src="{{picture}}" >
+      </div>
+
+      <div class="caption col-md-4">
+        <h2>{{name}}</h2>
+        <p>{{grapes}}</p>
+        <p>{{country}} - {{year}}</p>
+        <p>{{description}}</p>
+      </div>
+
+      <div class="col-md-4">
+       <div class="col-md-12">
+       <h1 class="price text-center">{{price}}</h1>
+       </div>
+       <div class="col-md-12">
+       <p class="text-center"><a href="#edit/{{id}}" class="btn btn-success" role="button">Edit Wine</a> <a href="#"  class="btn btn-danger delete-button" id="{{id}}" role="button">Delete Wine</a></p>
+       </div>
+     </div>
+
+
+  </div>
+</div>
+
+
+{{/each}}
+
+</script>
+
+
+<script id="edit-wine" type="x-handlebars-template">
+
+ <div class="col-md-4">
+        <img src="{{picture}}" >
+        <div class="form-group">
+			<label for="picture">Picture:</label>
+			<input type="text" class="form-control"  name="picture" value="{{picture}}"></input>
+		</div>
+ </div>
+
+  <div class="caption col-md-4">
+
+		<div class="form-group">
+			<label for="wine">Name:</label>
+			<input type="text" class="form-control"  name="name" value="{{name}}"></input>
+		</div>
+		<div class="form-group">
+			<label for="grapes">Grapes:</label>
+			<input type="text" class="form-control"  name="grapes" value="{{grapes}}"></input>
+		</div>
+		<div class="form-group">
+			<label for="grapes">Year:</label>
+			<input type="text" class="form-control"  name="year" value="{{year}}"></input>
+		</div>
+		<div class="form-group">
+			<label for="country">Country:</label>
+			<input type="text" class="form-control"  name="country" value="{{country}}"></input>
+		</div>
+		<div class="form-group">
+			<label for="description">Description:</label>
+			<input type="text" class="form-control description"  name="description" value="{{description}}"></input>
+		</div>
+
+  </div>
+
+  <div class="col-md-4">
+	   <div class="col-md-12">
+		   	<div class="form-group">
+			   <label for="price">Price:</label>
+			   <input type="text" class="form-control description pricebox"  name="price" value="{{price}}"></input>
+			</div>
+			<button type="button" class="btn btn-success submit-edits" edit_id="{{id}}">Edit Wine</button>
+	   </div>
+ </div>
+
+</script>
+
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://underscorejs.org/underscore-min.js"></script>
+	<script src="http://backbonejs.org/backbone-min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

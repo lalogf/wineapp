@@ -1,0 +1,81 @@
+/*.modal-header{
+	background-color: black
+}*/
+
+.modal-content{
+	width: 600px;
+	height: 600px;
+	border-radius: 100%;
+	padding: 100px;
+	background-color: rgba(0,0,0,0.8)
+}
+
+.modal-header , .modal-body, .modal-footer{
+	color:white;
+}
+
+
+#content, #newwine{
+	margin-top: 30px
+}
+
+.price{
+	font-size: 150px
+}
+
+
+.price-container{
+	background-color: yellow;
+	height: 200px;
+	width: 200px;
+	border-radius: 100%;
+}
+
+
+.btn{
+	border-radius: 0px;
+	color: black;
+/*	font-weight: bold;*/
+	background:none;
+}
+
+.btn-hover{
+	background: none;
+}
+
+.btn-success{
+	border: solid 4px rgba(46, 204, 113,1.0)
+}
+
+.btn-danger{
+	border: solid 4px rgba(192, 57, 43,1.0)
+}
+
+.btn-primary{
+	border: solid 4px rgba(25,138,255,1.0);
+}
+
+input{
+	margin: 10px;
+}
+
+.description{
+	height: 100px;
+}
+
+.pricebox{
+	height: 200px;
+	font-size: 150px;
+}
+
+#newwine {
+	display: none
+}
+
+
+/*.thumbnail{
+	height: 700px;
+}
+*/
+
+
