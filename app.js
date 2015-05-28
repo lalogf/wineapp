@@ -24,16 +24,20 @@ $("#addwinebn").click(function(){
 	$("#newwine").toggle();
 });
 
+$("#cancel").click(function(){
+	$("#newwine").toggle();
+});
+
 var Router = Backbone.Router.extend({
 	routes: {
-		"index":"index",
+		"":"index",
 		"edit/:id": "edit_wine"	
 	}
 });
 
 function getWines (){
 		$.ajax({
-		url: "http://daretodiscover.net/wine",
+		url: "http://daretodiscover.herokuapp.com/wines",
 		type: "GET",
 		success: function(data) { 
 
@@ -54,7 +58,7 @@ router.on("route:index", getWines);
 
 router.on("route:edit_wine", function(id){
 	$.ajax({
-		url: "http://daretodiscover.net/wine/" + id,
+		url: "http://daretodiscover.herokuapp.com/wines/" + id,
 		type: "GET",
 		success: function(data){
 			var html = editWineTemplate(data);
@@ -72,7 +76,7 @@ Backbone.history.start();
 
 $(document).on("click", ".submit-edits", function(){
 	$.ajax({
-		url:"http://daretodiscover.net/wine/" + $(this).attr("edit_id"),
+		url:"http://daretodiscover.herokuapp.com/wines/" + $(this).attr("edit_id"),
 		type: "PUT",
 		data: {
 				name: $("input[name=name]").val(),
@@ -84,8 +88,7 @@ $(document).on("click", ".submit-edits", function(){
 				year: $("input[name=year]").val()
 		},
 		success: function(data){
-			window.location.href= "#index";
-
+			window.location.href= "#";
 		},
 		error: function(data){
 			alert("something went wrong");
@@ -95,7 +98,7 @@ $(document).on("click", ".submit-edits", function(){
 
 $(document).on("click", "#add-wine", function(){
 	$.ajax({
-		url: "http://daretodiscover.net/wine",
+		url: "http://daretodiscover.herokuapp.com/wines",
 		type: "POST",
 		data: {
 				name: $("input[name=newname]").val(),
@@ -119,10 +122,10 @@ $(document).on("click", "#add-wine", function(){
 
 $(document).on("click", ".delete-button",function(){
 	$.ajax({
-		url: "http://daretodiscover.net/wine/" + $(this).attr("id"),
+		url: "http://daretodiscover.herokuapp.com/wines/" + $(this).attr("id"),
 		type: "DELETE",
 		success: function(){
-			window.location.href = "#index";
+			window.location.href = "#";
 		},
 		error: function(){
 			alert("Wrong")
